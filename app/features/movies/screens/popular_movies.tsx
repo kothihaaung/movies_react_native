@@ -5,7 +5,7 @@ import { fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure } from '../m
 import { Movie } from '../movie';
 
 // Type for the Redux state
-interface RootState {
+interface MoviesState {
     movies: {
         movies: Movie[];
         loading: boolean;
@@ -13,11 +13,11 @@ interface RootState {
     };
 }
 
-const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGYzZWQ3YjA0NjY1NWM0NzRmMzM5OGFhYjQxMjY3ZCIsIm5iZiI6MTcyNDIxMDQ2NC4zMDc4OCwic3ViIjoiNjA0YWUwMTY5MGI4N2UwMDU4ZWU0YTQ0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.Hcayqbgrx070hgnacNfTfgaFyirzFyq4OVmwMONV-1w';
+const ACCESS_TOKEN = '';
 
 const PopularMoviesScreen = () => {
     const dispatch = useDispatch();
-    const { movies, loading, error } = useSelector((state: RootState) => state.movies);
+    const { movies, loading, error } = useSelector((state: MoviesState) => state.movies);
 
     useEffect(() => {
         const fetchMovies = async () => {
