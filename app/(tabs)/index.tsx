@@ -37,7 +37,9 @@ const PopularMoviesScreen = () => {
       }
     };
 
+    // Call API
     fetchMovies();
+
   }, []);
 
   if (loading) {
