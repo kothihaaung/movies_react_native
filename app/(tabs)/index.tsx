@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View, ActivityIndicator, StyleSheet } from 'react-native';
 
-
 interface Movie {
   id: number;
   title: string;
 }
 
+const ACCESS_TOKEN = '';
+
 const PopularMoviesScreen = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const apiKey = '';
 
   useEffect(() => {
     // Function to fetch data from the TMDB API
     const fetchMovies = async () => {
       try {
         const response = await fetch(
-          'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key='
+          'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',
+          {
+            headers: {
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            },
+          }
         );
         
         const data = await response.json();
-        setMovies(data.results); // Assuming the API returns an array of movie objects under "results"
-      
+
+        // store to local cache
+        setMovies(data.results);
+
       } catch (error) {
         console.error('Error fetching data:', error);
-      
       } finally {
         setLoading(false);
       }
