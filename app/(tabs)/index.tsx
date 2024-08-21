@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, ActivityIndicator, StyleSheet } from 'react-native';
+import { FlatList, Text, View, ActivityIndicator, StyleSheet, Image } from 'react-native';
 
 interface Movie {
   id: number;
   title: string;
+  poster_path: string;
 }
 
 const ACCESS_TOKEN = '';
@@ -32,6 +33,7 @@ const PopularMoviesScreen = () => {
 
       } catch (error) {
         console.error('Error fetching data:', error);
+
       } finally {
         setLoading(false);
       }
@@ -56,7 +58,15 @@ const PopularMoviesScreen = () => {
         data={movies}
         keyExtractor={(item) => item.id.toString()} // Ensure each item has a unique key
         renderItem={({ item }) => (
-          <Text style={styles.title}>{item.title}</Text> // Display the movie title
+          <View style={styles.movieContainer}>
+            {/* Display the poster image */}
+            <Image
+              source={{ uri: `https://image.tmdb.org/t/p/w200${item.poster_path}` }}
+              style={styles.poster}
+            />
+            {/* Display the movie title */}
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
         )}
       />
     </View>
@@ -68,11 +78,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#000',
+  },
+  movieContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  poster: {
+    width: 100,
+    height: 150,
+    borderRadius: 8,
+    marginRight: 16,
   },
   title: {
     fontSize: 18,
-    marginVertical: 8,
     color: 'white',
+    flexShrink: 1, // Ensures the title text doesn't overflow
   },
   loadingContainer: {
     flex: 1,
