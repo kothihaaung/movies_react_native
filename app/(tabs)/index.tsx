@@ -11,7 +11,7 @@ const PopularMoviesScreen = () => {
         alignItems: 'center',
       }}>
       
-      <Link href='/Screens/movie_detail'>Explore</Link>
+      <Link href='/screens/movie_detail'>Explore</Link>
     </View>
   );
 };

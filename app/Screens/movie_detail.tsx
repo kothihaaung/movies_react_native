@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const PopularMoviesScreen = () => {
+const MovieDetailScreen = () => {
   return (
     <View
       style={{
@@ -9,9 +9,9 @@ const PopularMoviesScreen = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>Movie detail.. 🎉</Text>
+        <Text>Movie Detail..</Text>
     </View>
   );
 };
 
-export default PopularMoviesScreen;
+export default MovieDetailScreen;
