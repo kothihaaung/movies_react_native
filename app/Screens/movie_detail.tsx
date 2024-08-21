@@ -8,7 +8,7 @@ const MovieDetailScreen = () => {
 
     type Params = {
         title: string
-    }
+    };
 
     const { title } = useLocalSearchParams<Params>();
 

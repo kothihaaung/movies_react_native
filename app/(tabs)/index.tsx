@@ -1,35 +1,36 @@
-import React from 'react'
-import { StyleSheet, Pressable, Text, View, Button } from 'react-native'
-import { router } from 'expo-router'
-import { useNavigation } from '@react-navigation/native'
+import React from 'react';
+import { StyleSheet, Pressable, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const PopularMoviesScreen = () => {
-  const navigation = useNavigation()
+  const router = useRouter();
 
-  // movie title
-  const movieTitle = 'Inception' // Example movie title
+  // Movie title
+  const movieTitle = 'Inception';
 
-  // onPress
+  // onPress function to navigate with params
   const onPress = () => {
-    router.navigate('/screens/movie_detail')
-    router.setParams({ title: movieTitle })
-}
+    router.push({
+      pathname: '/screens/movie_detail',
+      params: { title: movieTitle }, // Pass the title as a param
+    });
+  };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+    <View style={styles.container}>
       <Pressable style={styles.button} onPress={onPress}>
-          <Text style={styles.text}>Movie: {movieTitle}</Text>
+        <Text style={styles.text}>Movie: {movieTitle}</Text>
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
-})
+});
 
-export default PopularMoviesScreen
-
+export default PopularMoviesScreen;
