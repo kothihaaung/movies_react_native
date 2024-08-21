@@ -1,4 +1,3 @@
-import { Link } from 'expo-router';
 import React from 'react';
 import {Text, View} from 'react-native';
 
@@ -10,8 +9,7 @@ const PopularMoviesScreen = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      
-      <Link href='/Screens/movie_detail'>Explore</Link>
+      <Text>Movie detail.. 🎉</Text>
     </View>
   );
 };
