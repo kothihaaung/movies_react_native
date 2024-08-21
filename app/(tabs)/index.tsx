@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, ActivityIndicator, StyleSheet, Image } from 'react-native';
+import { FlatList, Text, View, ActivityIndicator, StyleSheet, Image, SafeAreaView } from 'react-native';
 
 interface Movie {
   id: number;
@@ -53,10 +53,10 @@ const PopularMoviesScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea}>
       <FlatList
         data={movies}
-        keyExtractor={(item) => item.id.toString()} // Ensure each item has a unique key
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.movieContainer}>
             {/* Display the poster image */}
@@ -68,38 +68,42 @@ const PopularMoviesScreen = () => {
             <Text style={styles.title}>{item.title}</Text>
           </View>
         )}
+        numColumns={2} // Set number of columns in grid
+        columnWrapperStyle={styles.columnWrapper} // Style for spacing between columns
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
-
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#000',
+    paddingTop: 16, // Padding at the top of the safe area
+    backgroundColor: '#000', // Background color
   },
   movieContainer: {
-    flexDirection: 'row',
+    flex: 1,
+    margin: 8, // Margin around each movie item
     alignItems: 'center',
-    marginBottom: 16,
   },
   poster: {
-    width: 100,
-    height: 150,
+    width: 150,
+    height: 225,
     borderRadius: 8,
-    marginRight: 16,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
-    flexShrink: 1, // Ensures the title text doesn't overflow
+    marginTop: 8,
+    textAlign: 'center',
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  columnWrapper: {
+    justifyContent: 'space-between', // Space out the columns
   },
 });
 
