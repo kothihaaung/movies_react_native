@@ -1,4 +1,4 @@
-import { Movie } from "../models/movie";
+import { Movie } from "./movie";
 
 export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
