@@ -14,15 +14,27 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}>
+      
       <Tabs.Screen
-        name="index"
+        name='index' 
         options={{
-          title: 'Home',
+          title: 'Popular',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={'film'} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="guide"
+        options={{
+          title: 'Guide',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
       />
+
       <Tabs.Screen
         name="explore"
         options={{
