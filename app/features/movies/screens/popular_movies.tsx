@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FlatList, Text, View, StyleSheet, ActivityIndicator, Image, SafeAreaView } from 'react-native';
+import { FlatList, Text, View, StyleSheet, ActivityIndicator, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure } from '../movies_actions';
 import { Movie } from '../movie';
@@ -31,6 +31,7 @@ const PopularMoviesScreen = () => {
                         },
                     }
                 );
+
                 const data = await response.json();
                 dispatch(fetchMoviesSuccess(data.results));
 
@@ -63,22 +64,26 @@ const PopularMoviesScreen = () => {
         );
     }
 
+    const renderItem = ({ item }: { item: Movie }) => (
+        <TouchableOpacity style={styles.gridItem} onPress={() => handlePress(item)}>
+            <Image
+                source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
+                style={styles.poster}
+            />
+            <Text style={styles.title}>{item.title}</Text>
+        </TouchableOpacity>
+    );
+
+    const handlePress = (item: Movie) => {
+        console.log('tapped...')
+    }
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <FlatList
                 data={movies}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.movieContainer}>
-                        {/* Display the poster image */}
-                        <Image
-                            source={{ uri: `https://image.tmdb.org/t/p/w200${item.poster_path}` }}
-                            style={styles.poster}
-                        />
-                        {/* Display the movie title */}
-                        <Text style={styles.title}>{item.title}</Text>
-                    </View>
-                )}
+                renderItem={renderItem}
                 numColumns={2} // Set number of columns in grid
                 columnWrapperStyle={styles.columnWrapper} // Style for spacing between columns
             />
@@ -92,13 +97,22 @@ const styles = StyleSheet.create({
         paddingTop: 16, // Padding at the top of the safe area
         backgroundColor: '#000',
     },
+    gridItem: {
+        flex: 1,
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'black',
+        padding: 0,
+        borderRadius: 10,
+    },
     movieContainer: {
         flex: 1,
         margin: 8, // Margin around each movie item
         alignItems: 'center',
     },
     poster: {
-        width: 150,
+        width: 160,
         height: 225,
         borderRadius: 8,
     },
