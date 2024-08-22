@@ -4,9 +4,7 @@ It is required API access token to run the project. You can get [it from here](h
 
 [Redux architecture](https://react-redux.js.org/) is used in this project.
 
-![Preview](./screenshot_android.png)
-
-![Preview](./screenshot_movie.mp4)
+| <img src="./screenshot_ios_1.png" width="200"> | <img src="./screenshot_ios_2.png" width="200">
 
 # Welcome to your Expo app 👋
 
