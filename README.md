@@ -1,3 +1,13 @@
+# React Native sample project based on TMDB API
+This sample project used TMDB API.
+It is required API access token to run the project. You can get [it from here](https://developer.themoviedb.org/v4/reference/intro/getting-started).
+
+[Redux architecture](https://react-redux.js.org/) is used in this project.
+
+![Preview](./screenshot_android.png)
+
+![Preview](./screenshot_movie.mp4)
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
