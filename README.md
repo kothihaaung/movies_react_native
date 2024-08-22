@@ -1,5 +1,5 @@
 # React Native sample project based on TMDB API
-This sample project used TMDB API.
+This sample project use TMDB API.
 It is required API access token to run the project. You can get [it from here](https://developer.themoviedb.org/v4/reference/intro/getting-started).
 
 [Redux architecture](https://react-redux.js.org/) is used in this project.
