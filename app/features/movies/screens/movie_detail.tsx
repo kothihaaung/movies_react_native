@@ -2,26 +2,28 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useLocalSearchParams } from 'expo-router';
+import { Movie } from '../movie';
 
 const MovieDetailScreen = () => {
     const navigation = useNavigation();
 
     type Params = {
-        title: string
+        item: string
     };
 
-    const { title } = useLocalSearchParams<Params>();
-
+    const { item } = useLocalSearchParams<Params>();
+    const movie: Movie = JSON.parse(item)
+    
     React.useLayoutEffect(() => {
         navigation.setOptions({
-        title: title, // Custom title
+        title: movie.title, // Custom title
         headerBackTitle: 'Back', // Custom back button label
         });
     }, [navigation]);
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Movie Detail Screen</Text>
+            <Text>Movie Detail Screen</Text>
         </View>
     );
 };

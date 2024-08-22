@@ -3,6 +3,7 @@ import { FlatList, Text, View, StyleSheet, ActivityIndicator, Image, SafeAreaVie
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure } from '../movies_actions';
 import { Movie } from '../movie';
+import { router } from 'expo-router';
 
 // Type for the Redux state
 interface MoviesState {
@@ -75,7 +76,10 @@ const PopularMoviesScreen = () => {
     );
 
     const handlePress = (item: Movie) => {
-        console.log('tapped...')
+        router.push({
+            pathname: '/features/movies/screens/movie_detail',
+            params: { item: JSON.stringify(item) }, // Or any unique identifier
+        });
     }
 
     return (
